@@ -41,5 +41,27 @@ def display_log_counts(counts: dict, *args):
         dets = [f"{el['data']} {el['time']} - {el['message']}" for el in logs]
         print('\n'.join(dets))
     print('-'.join(['' for el in range(0, 35)]))
-display_log_counts(counted_by_level)
-display_log_counts(counted_by_level, 'info')
+
+# for working in terminal:
+#   you can write in terminal:
+#       - python path_to_file
+#       - python path_to_file info(debug and so on)
+
+import sys
+def find_terminal_arg():
+    if len(sys.argv) > 1:
+        return sys.argv[1]
+terminal_arg = find_terminal_arg()
+
+def main(func):
+    def inner(*args, **kwargs):
+        return func(*args, **kwargs)
+    return inner
+
+if __name__ == '__main__':
+    if terminal_arg:
+        main(display_log_counts)(counted_by_level, terminal_arg)
+    else:
+        main(display_log_counts)(counted_by_level)
+
+

@@ -9,7 +9,7 @@ from decimal import Decimal
 report = 'Загальний доход працівника складається з декілька частин: '\
         '1000.01 як основний дохід, доповнений додатковими надхожденнями '\
         '27.45 та 324.00 долларів'
-pattern = r'\s\d+\.?\d*\s'
+pattern = r' \d+\.?\d* '
 def generator_numbers(text):
     start_pos = 0
     while True:
